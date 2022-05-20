@@ -228,7 +228,7 @@ class Document:
         # In some cases, self.content is None (therefore not subscriptable)
         if self.content is None:
             return f"<Document: id={self.id}, content=None>"
-        return f"<Document: id={self.id}, content='{self.content[:100]} {'...' if len(self.content) > 100 else ''}'>"
+        return f"<Document: id={self.id}, content='{self.content[:]} {'...' if len(self.content) > 300 else ''}'>"
 
     def __lt__(self, other):
         """Enable sorting of Documents by score"""
@@ -305,7 +305,7 @@ class Answer:
         # self.context might be None (therefore not subscriptable)
         if not self.context:
             return f"<Answer: answer='{self.answer}', score={self.score}, context=None>"
-        return f"<Answer: answer='{self.answer}', score={self.score}, context='{self.context[:50]}{'...' if len(self.context) > 50 else ''}'>"
+        return f"<Answer: answer='{self.answer}', score={self.score}, context='{self.context[:150]}{'...' if len(self.context) > 150 else ''}'>"
 
     def __repr__(self):
         return f"<Answer {asdict(self)}>"
